@@ -12,14 +12,18 @@ import { motion } from "framer-motion"
 const noteVariants = {
   hidden: {
     opacity: 0,
-    y: 20
+    y: 20,
+    transition: {
+      ease: "easeOut",
+      duration: 0.2
+    }
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.3,
-      ease: "easeInOut"
+      duration: 0.2,
+      ease: "easeOut"
     }
   }
 }
@@ -67,7 +71,10 @@ const Notes = () => {
       <div className="container">
         {apiData.map((data) => {
           return (
-            <div className="note" key={data.id}>
+            <motion.div
+              variants={noteVariants}
+              className="note"
+              key={data.id}>
               <div className="note-bar">
                 <h3 className="note-bar-title">{data.noteTitle}</h3>
                 <div className="note-bar-buttons">
@@ -84,7 +91,7 @@ const Notes = () => {
                 </div>
               </div>
               <p>{data.noteContent}</p>
-            </div>
+            </motion.div>
           );
         })}
       </div>

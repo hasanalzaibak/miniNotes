@@ -11,14 +11,18 @@ import { motion } from "framer-motion"
 const createVariants = {
   hidden: {
     opacity: 0,
-    y: 20
+    y: 20,
+    transition: {
+      ease: "easeOut",
+      duration: 0.2
+    }
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      ease: "easeInOut",
-      duration: 0.3
+      duration: 0.2,
+      ease: "easeOut"
     }
   }
 }
@@ -58,46 +62,46 @@ const Create = () => {
   //Return JSX
 
   return (
-    <motion.div
-      variants={createVariants}
-      initial="hidden"
-      animate="visible"
-      exit="hidden"
-    >
-      <h2>_new</h2>
-      <form>
-        <input
-          onChange={(e) => setNoteTitle(e.target.value)}
-          type="text"
-          name="noteTitle"
-          placeholder="Title"
-        />
-        <div className="speech">
-          <select onChange={(e) => setLanguageValue(e.target.value)}>
-            <option value="en-US">EN</option>
-            <option value="pt-br">PT</option>
-          </select>
-          <button onMouseDown={handleSpeech} className="mic-button" type="button">
-            <img alt="mic-icon" className="mic" src={mic} />
-          </button>
-        </div>
-        <textarea
-          onChange={(e) => setNoteContent(e.target.value)}
-          type="text"
-          name="noteContent"
-          placeholder="Content"
-          value={noteContent}
-        />
-        <Link to="/">
-          <button className="button" onClick={sendDataApi} type="submit">
-            Add
-          </button>
-        </Link>
-        <Link to="/">
-          <button className="button" type="submit">Back</button>
-        </Link>
-      </form>
-    </motion.div>
+      <motion.div
+        variants={createVariants}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+      >
+        <h2>_new</h2>
+        <form>
+          <input
+            onChange={(e) => setNoteTitle(e.target.value)}
+            type="text"
+            name="noteTitle"
+            placeholder="Title"
+          />
+          <div className="speech">
+            <select onChange={(e) => setLanguageValue(e.target.value)}>
+              <option value="en-US">EN</option>
+              <option value="pt-br">PT</option>
+            </select>
+            <button onMouseDown={handleSpeech} className="mic-button" type="button">
+              <img alt="mic-icon" className="mic" src={mic} />
+            </button>
+          </div>
+          <textarea
+            onChange={(e) => setNoteContent(e.target.value)}
+            type="text"
+            name="noteContent"
+            placeholder="Content"
+            value={noteContent}
+          />
+          <Link to="/">
+            <button className="button" onClick={sendDataApi} type="submit">
+              Add
+            </button>
+          </Link>
+          <Link to="/">
+            <button className="button" type="submit">Back</button>
+          </Link>
+        </form>
+      </motion.div>
   );
 };
 

@@ -2,21 +2,25 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion"
+import {  motion } from "framer-motion"
 
 //Animation
 
 const updateVariants = {
   hidden: {
     opacity: 0,
-    y: 20
+    y: 20,
+    transition: {
+      ease: "easeOut",
+      duration: 0.2
+    }
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      ease: "easeInOut",
-      duration: 0.3
+      ease: "easeOut",
+      duration: 0.2
     }
   }
 }
@@ -50,38 +54,38 @@ const Update = () => {
   }, []);
 
   return (
-    <motion.div
-      variants={updateVariants}
-      initial="hidden"
-      animate="visible"
-      exit="hidden"
-    >
-      <h2>_edit</h2>
-      <form className="form">
-        <input
-          onChange={(e) => setNoteTitle(e.target.value)}
-          type="text"
-          name="noteTitle"
-          placeholder="Title"
-          value={noteTitle}
-        />
-        <textarea
-          onChange={(e) => setNoteContent(e.target.value)}
-          type="text"
-          name="noteContent"
-          placeholder="Content"
-          value={noteContent}
-        />
-        <Link to="/">
-          <button className="button" onClick={updateData} type="submit">
-            Update
-          </button>
-        </Link>
-        <Link to="/">
-          <button className="button" type="submit">Back</button>
-        </Link>
-      </form>
-    </motion.div>
+      <motion.div
+        variants={updateVariants}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+      >
+        <h2>_edit</h2>
+        <form className="form">
+          <input
+            onChange={(e) => setNoteTitle(e.target.value)}
+            type="text"
+            name="noteTitle"
+            placeholder="Title"
+            value={noteTitle}
+          />
+          <textarea
+            onChange={(e) => setNoteContent(e.target.value)}
+            type="text"
+            name="noteContent"
+            placeholder="Content"
+            value={noteContent}
+          />
+          <Link to="/">
+            <button className="button" onClick={updateData} type="submit">
+              Update
+            </button>
+          </Link>
+          <Link to="/">
+            <button className="button" type="submit">Back</button>
+          </Link>
+        </form>
+      </motion.div>
   );
 };
 
